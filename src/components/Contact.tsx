@@ -7,73 +7,70 @@ import { Mail, Phone, MapPin } from "lucide-react";
 
 export function ContactSection() {
     return (
-        <section className="relative py-20 bg-[#0B0F1A] overflow-hidden">
-            <div className="absolute top-1/4 right-1/4 w-[200px] h-[200px] bg-blue-500/10 blur-[120px] -z-10 animate-pulse" />
-            <div className="absolute bottom-1/4 left-1/4 w-[200px] h-[200px] bg-cyan-400/10 blur-[120px] -z-10 animate-pulse" />
+        <section className="relative py-24 bg-[#0B0F1A] overflow-hidden px-8 sm:px-16 lg:px-32">
+            {/* Soft Background Glows */}
+            <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-blue-500/10 blur-[150px] -z-10 animate-pulse" />
+            <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-cyan-400/10 blur-[150px] -z-10 animate-pulse" />
 
-            {/* Section Content */}
-            <div className="container mx-auto px-6">
-                <div className="grid md:grid-cols-2 gap-16">
+            {/* Contact Content */}
+            <div className="container mx-auto">
+                <div className="grid md:grid-cols-2 gap-24 items-center">
+
+                    {/* Contact Info */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true }}
-                        className="space-y-8"
+                        className="space-y-10"
                     >
-                        <h2 className="text-4xl font-bold text-white text-center sm:text-left">
-                            GET IN TOUCH
+                        <h2 className="text-5xl font-extrabold text-white text-center sm:text-left">
+                            Let’s Connect
                         </h2>
-                        <p className="text-gray-400 text-center sm:text-left">
-                            We&apos;re here to help. Reach out to us with any questions or feedback!
+                        <p className="text-gray-400 text-lg text-center sm:text-left leading-relaxed">
+                            Have questions or an exciting project in mind? We’d love to hear from you!
                         </p>
 
                         <div className="space-y-6">
-                            <motion.div
-                                className="flex items-center space-x-4 text-gray-400 hover:text-blue-400 transition-all duration-300"
-                                whileHover={{ scale: 1.1 }}
-                            >
-                                <MapPin className="text-blue-400" />
-                                <span>123 Main Street, City, Country</span>
-                            </motion.div>
-                            <motion.div
-                                className="flex items-center space-x-4 text-gray-400 hover:text-blue-400 transition-all duration-300"
-                                whileHover={{ scale: 1.1 }}
-                            >
-                                <Phone className="text-blue-400" />
-                                <span>+123 456 7890</span>
-                            </motion.div>
-                            <motion.div
-                                className="flex items-center space-x-4 text-gray-400 hover:text-blue-400 transition-all duration-300"
-                                whileHover={{ scale: 1.1 }}
-                            >
-                                <Mail className="text-blue-400" />
-                                <span>info@example.com</span>
-                            </motion.div>
+                            {[
+                                { icon: <MapPin />, text: "123 Main Street, City, Country" },
+                                { icon: <Phone />, text: "+123 456 7890" },
+                                { icon: <Mail />, text: "info@example.com" },
+                            ].map((item, index) => (
+                                <motion.div
+                                    key={index}
+                                    className="flex items-center space-x-4 text-gray-400 hover:text-blue-400 transition-all duration-300"
+                                    whileHover={{ scale: 1.08 }}
+                                >
+                                    <div className="text-blue-400 text-2xl">{item.icon}</div>
+                                    <span className="text-lg">{item.text}</span>
+                                </motion.div>
+                            ))}
                         </div>
                     </motion.div>
 
+                    {/* Contact Form */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                         viewport={{ once: true }}
-                        className="space-y-6 relative z-10"
+                        className="relative z-10"
                     >
-                        <div className="space-y-4">
+                        <div className="space-y-6 bg-[#141A26] p-8 rounded-2xl shadow-lg border border-gray-700">
                             <Input
                                 placeholder="Your Name"
-                                className="bg-gray-800/50 border-gray-700 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 z-20"
+                                className="bg-gray-900/70 border border-gray-700 text-white rounded-lg px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
                             />
                             <Input
                                 placeholder="Your Email"
-                                className="bg-gray-800/50 border-gray-700 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 z-20"
+                                className="bg-gray-900/70 border border-gray-700 text-white rounded-lg px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
                             />
                             <Textarea
                                 placeholder="Your Message"
-                                className="bg-gray-800/50 border-gray-700 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 h-32 transition-all duration-300 z-20"
+                                className="bg-gray-900/70 border border-gray-700 text-white rounded-lg px-5 py-3 h-36 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
                             />
-                            <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white rounded-xl py-3 mt-4 transition-all duration-300 transform hover:scale-105 z-20">
+                            <Button className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold rounded-lg py-3 transition-all duration-300 transform hover:scale-105">
                                 Send Message
                             </Button>
                         </div>
@@ -81,10 +78,11 @@ export function ContactSection() {
                 </div>
             </div>
 
+            {/* Subtle Animated Glow Overlay */}
             <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-blue-500/30 via-cyan-400/20 to-transparent blur-3xl opacity-20 z-0"
-                animate={{ scale: [1, 1.05, 1], opacity: [0.15, 0.25, 0.15] }}
-                transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+                className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-cyan-400/15 to-transparent blur-[200px] opacity-30"
+                animate={{ scale: [1, 1.02, 1], opacity: [0.2, 0.3, 0.2] }}
+                transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
             />
         </section>
     );

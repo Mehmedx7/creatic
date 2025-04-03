@@ -5,37 +5,33 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function HeroSection() {
-    const [contentTransform, setContentTransform] = useState({
-        x: 0,
-        y: 0,
-        scale: 1,
-        rotation: 0
-    });
+    const [rotation, setRotation] = useState(0);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setContentTransform(prev => ({
-                ...prev,
-                rotation: prev.rotation + 1,
-            }));
+            setRotation((prev) => prev + 1);
         }, 20);
-
         return () => clearInterval(interval);
     }, []);
 
     return (
         <section className="relative min-h-screen overflow-hidden bg-black">
+            {/* Gradient Overlays for Depth */}
             <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent z-10" />
             <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black/70 z-10" />
 
-            <div className="relative z-20 container mx-auto px-6 h-screen flex items-center justify-center">
-                <div className="grid lg:grid-cols-2 gap-16 items-center w-full">
+            {/* Container */}
+            <div className="relative z-20 container mx-auto px-8 lg:px-12 h-screen flex items-center justify-center">
+                <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
+
+                    {/* Left Content */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1 }}
                         className="space-y-8 max-w-lg"
                     >
+                        {/* Small Intro Text */}
                         <motion.p
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -46,6 +42,7 @@ export default function HeroSection() {
                             <div className="absolute -inset-4 bg-blue-500/10 blur-md -z-10" />
                         </motion.p>
 
+                        {/* Hero Heading */}
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -68,16 +65,13 @@ export default function HeroSection() {
                             </p>
                         </motion.div>
 
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.5 }}
-                        >
+                        {/* Call-to-Action Button */}
+                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
                             <Button
                                 variant="outline"
                                 className="bg-transparent text-white border-blue-500 hover:bg-blue-500/10 hover:text-blue-400 transition-all duration-300 relative group"
                             >
-                                <Link href={'https://mohammedkhan.netlify.app/'} target="_blank">
+                                <Link href="/contact">
                                     <span className="relative z-10">GET IN TOUCH</span>
                                 </Link>
                                 <div className="absolute inset-0 bg-blue-500/0 group-hover:bg-blue-500/20 blur-lg transition-all duration-300 -z-10" />
@@ -85,8 +79,9 @@ export default function HeroSection() {
                         </motion.div>
                     </motion.div>
 
+                    {/* Right Animated 3D Box */}
                     <motion.div
-                        className="relative hidden lg:block h-[600px] w-full"
+                        className="relative hidden lg:block h-[500px] w-full"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.3 }}
@@ -96,19 +91,16 @@ export default function HeroSection() {
                                 className="w-[300px] h-[300px] border-[10px] border-blue-400 rounded-xl transform perspective-1000"
                                 style={{
                                     transformStyle: "preserve-3d",
-                                    transform: `rotateX(${contentTransform.rotation}deg) rotateY(${contentTransform.rotation}deg)`
+                                    transform: `rotateX(${rotation}deg) rotateY(${rotation}deg)`,
                                 }}
                             >
                                 <div className="absolute inset-0 w-full h-full border-[2px] border-gray-600">
                                     <motion.div
                                         className="absolute inset-0 flex items-center justify-center w-full h-full bg-blue-500/40"
-                                        style={{
-                                            transform: `rotateY(${contentTransform.rotation}deg)`,
-                                        }}
                                         animate={{
                                             rotateX: [0, 90, 0],
                                             rotateY: [0, 90, 0],
-                                            scale: [1, 1.2, 1],
+                                            scale: [1, 1.1, 1],
                                         }}
                                         transition={{
                                             repeat: Infinity,
@@ -120,6 +112,7 @@ export default function HeroSection() {
                             </motion.div>
                         </div>
                     </motion.div>
+
                 </div>
             </div>
         </section>
