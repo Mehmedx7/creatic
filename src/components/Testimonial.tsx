@@ -91,7 +91,7 @@ export function TestimonialsSection() {
               }}
               className="text-blue-400"
             >
-              "Their creativity is beyond what we expected—always one step ahead."
+              &quot;Their creativity is beyond what we expected—always one step ahead.&quot;
             </motion.span>
           </p>
           <motion.div

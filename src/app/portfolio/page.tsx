@@ -146,7 +146,7 @@ export default function PortfolioPage() {
                                     transition={{ duration: 0.3 }}
                                     className="p-10 bg-[#1A2248] rounded-2xl shadow-lg text-center transform transition-all border border-transparent hover:border-cyan-400"
                                 >
-                                    <p className="text-gray-300 italic">"{testimonial.feedback}"</p>
+                                    <p className="text-gray-300 italic">&quot;{testimonial.feedback}&quot;</p>
                                     <h3 className="text-lg font-bold text-blue-400 mt-4">{testimonial.name}</h3>
                                 </motion.div>
                             ))}
